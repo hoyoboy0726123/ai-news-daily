@@ -18,25 +18,17 @@
             --warning: #f59e0b;
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background: var(--bg);
             color: var(--text);
             min-height: 100vh;
-            line-height: 1.6;
+            line-height: 1.8;
         }
         
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
         
         header {
             text-align: center;
@@ -56,20 +48,9 @@
             gap: 15px;
         }
         
-        header .emoji {
-            font-size: 3rem;
-        }
+        .update-time { color: rgba(255,255,255,0.8); font-size: 1rem; }
         
-        .update-time {
-            color: rgba(255,255,255,0.8);
-            font-size: 1rem;
-        }
-        
-        .news-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
+        .news-list { display: flex; flex-direction: column; gap: 20px; }
         
         .news-card {
             background: var(--card-bg);
@@ -84,10 +65,7 @@
             box-shadow: 0 10px 30px rgba(34, 211, 238, 0.2);
         }
         
-        .news-header {
-            padding: 25px;
-            cursor: pointer;
-        }
+        .news-header { padding: 25px; cursor: pointer; }
         
         .news-card h2 {
             font-size: 1.3rem;
@@ -143,13 +121,8 @@
             cursor: pointer;
         }
         
-        .expand-btn .arrow {
-            transition: transform 0.3s ease;
-        }
-        
-        .news-card.expanded .expand-btn .arrow {
-            transform: rotate(180deg);
-        }
+        .expand-btn .arrow { transition: transform 0.3s ease; }
+        .news-card.expanded .expand-btn .arrow { transform: rotate(180deg); }
         
         .news-content {
             max-height: 0;
@@ -158,34 +131,50 @@
             background: rgba(0,0,0,0.2);
         }
         
-        .news-card.expanded .news-content {
-            max-height: 2000px;
-        }
+        .news-card.expanded .news-content { max-height: 5000px; }
         
         .news-content-inner {
             padding: 25px;
             border-top: 1px solid rgba(255,255,255,0.1);
         }
         
-        .translation-box {
+        .full-article {
             background: rgba(99, 102, 241, 0.1);
             border-radius: 12px;
-            padding: 20px;
+            padding: 25px;
             margin-bottom: 20px;
         }
         
-        .translation-box h3 {
+        .full-article h3 {
             color: var(--accent);
-            margin-bottom: 15px;
-            font-size: 1.1rem;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
             display: flex;
             align-items: center;
             gap: 8px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
         }
         
-        .translation-box p {
+        .full-article h4 {
+            color: var(--accent);
+            margin: 25px 0 15px 0;
+            font-size: 1.1rem;
+        }
+        
+        .full-article p {
             color: var(--text);
-            line-height: 1.8;
+            line-height: 2;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .full-article .quote {
+            border-left: 4px solid var(--accent);
+            padding-left: 20px;
+            margin: 20px 0;
+            font-style: italic;
+            color: var(--text-muted);
         }
         
         .original-link {
@@ -213,10 +202,7 @@
             font-size: 0.9rem;
         }
         
-        footer a {
-            color: var(--accent);
-            text-decoration: none;
-        }
+        footer a { color: var(--accent); text-decoration: none; }
         
         .powered-by {
             display: flex;
@@ -227,45 +213,79 @@
         }
         
         @media (max-width: 600px) {
-            header h1 {
-                font-size: 1.8rem;
-            }
-            .news-card h2 {
-                font-size: 1.1rem;
-            }
-            .news-meta {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+            header h1 { font-size: 1.8rem; }
+            .news-card h2 { font-size: 1.1rem; }
+            .news-meta { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1><span class="emoji">🤖</span> AI 每日新聞</h1>
-            <p class="update-time">更新時間：2026年2月2日 19:21</p>
+            <h1><span>🤖</span> AI 每日新聞</h1>
+            <p class="update-time">更新時間：2026年2月2日 19:24</p>
         </header>
         
         <main class="news-list">
-            <!-- 新聞 1 -->
+            <!-- 新聞 1：GovTech - 全文翻譯 -->
             <article class="news-card" data-lang="en">
                 <div class="news-header" onclick="toggleCard(this.parentElement)">
-                    <h2>🌍 紐約時報：更加關注人工智慧的時候到了</h2>
-                    <p class="summary">這篇觀點文章探討了我們目前在人工智慧發展中所處的位置，呼籲大眾應該更加重視 AI 對世界的影響。</p>
+                    <h2>🏛️ 2026年政府如何規模化應用 AI</h2>
+                    <p class="summary">政府正從 AI 實驗階段邁向永久性專案，在交通優化、詐欺偵測和市民服務自動化等領域取得進展。</p>
                     <div class="news-meta">
-                        <span class="news-source">New York Times</span>
-                        <span class="lang-badge lang-en">🌐 英文原文（已翻譯）</span>
-                        <span class="expand-btn">展開詳情 <span class="arrow">▼</span></span>
+                        <span class="news-source">GovTech</span>
+                        <span class="lang-badge lang-en">🌐 英文原文（全文翻譯）</span>
+                        <span class="expand-btn">展開全文 <span class="arrow">▼</span></span>
                     </div>
                 </div>
                 <div class="news-content">
                     <div class="news-content-inner">
-                        <div class="translation-box">
-                            <h3>📝 中文翻譯摘要</h3>
-                            <p>這篇文章大致反映了我們目前對人工智慧的態度。作者認為，人工智慧正在快速發展，但公眾對其影響的關注程度仍然不夠。文章呼籲讀者應該更加重視 AI 技術對社會、經濟和個人生活的深遠影響，並積極參與相關討論，以確保這項技術能夠造福人類。</p>
+                        <div class="full-article">
+                            <h3>📝 全文中文翻譯</h3>
+                            
+                            <p>密西西比州資訊長 Craig Orgeron 對人工智慧抱持樂觀態度，他是一位對這項技術採取積極態度的領導者——儘管 AI 引發了從失業到軟體偏見等各種近乎烏托邦的期望和反烏托邦的恐懼。</p>
+                            
+                            <p>隨著 AI 承擔更多工作並變得越來越熟悉，這種樂觀情緒在政府科技產業中相當普遍。部分原因無疑是「領導、跟隨或讓開」的務實主義，因為對政府科技領導者來說，AI 不太可能只是被過度炒作、過度行銷且注定會消退的趨勢。</p>
+                            
+                            <p>即使州和地方機構的技術領導者在 2025 年大部分時間都在擔心聯邦預算削減的影響，AI 的開發和部署仍在向前推進。例如，全國州資訊長協會（NASCIO）的一項調查發現，82% 的州資訊長表示他們的員工在日常工作中使用生成式 AI 工具，90% 的人正在制定 AI 試驗專案。</p>
+                            
+                            <p class="quote">「AI 正在以我們從未見過的世代方式使技術民主化。」— Craig Orgeron</p>
+                            
+                            <p>在他看來，AI 將在公共部門技術中帶來更多「增強」，而不是成為零和競爭者。即使這項技術迫使組織和其他方面發生重大變革，AI 也將成為隊友，而非威脅。</p>
+                            
+                            <h4>泡沫擔憂</h4>
+                            
+                            <p>在公共部門追求穩固且持續的 AI 成果之際，這項技術正面臨其「泡沫」階段——也就是說，人們擔心對 AI 的投資正在失控，該技術最終將屈服於財務現實的引力。</p>
+                            
+                            <p>隨著 2025 年結束，關於 AI 泡沫的猜測十分猖獗，有人堅稱對這項技術「數兆美元的賭注」可能無法得到回報，也有人說大型語言模型（而非整個 AI）帶來更多風險。</p>
+                            
+                            <p>其他觀察者指出 AI 對能源的巨大需求可能是該技術增長的最大弱點，還有人戳破或駁斥泡沫論點。</p>
+                            
+                            <h4>炒作與投資報酬率</h4>
+                            
+                            <p>像許多技術一樣，AI 正在「經歷炒作週期然後成熟」，投資者 Weatherford 表示。</p>
+                            
+                            <p>但政府科技提供了避免潛在風暴的庇護，因為採用「通常更加審慎且以使命為導向，這應該能緩和我們在其他領域看到的投機過度」，他說。</p>
+                            
+                            <p>麻省理工學院（MIT）發現，儘管迄今為止生成式 AI 投資高達 400 億美元，但 95% 使用該技術的組織「回報為零」，即使富有的股東享受著所有 AI 投資的回報。不僅如此，只有 5% 的整合 AI 試驗專案產生了有意義的價值。</p>
+                            
+                            <h4>規模化之路</h4>
+                            
+                            <p>紐約的 Polimorphic 公司提供了一個例子，說明如何在未來幾年衡量公共部門 AI 的投資報酬率——一種讓它規模化並為所有相關方帶來切實日常利益的方式。</p>
+                            
+                            <p class="quote">「AI 代理，特別是語音 AI，是偉大的均衡器。這是數位原生和非數位原生居民都可以使用軟體與政府互動的方式。」— Kyle Patel，Polimorphic 工程副總裁</p>
+                            
+                            <p>反詐欺工作也可能在 2026 年推動公共部門 AI 的增長並幫助其規模化。</p>
+                            
+                            <h4>自動化的吸引力</h4>
+                            
+                            <p>埃森哲在 2025 年底發布的一項研究發現，62% 的政府工作者認為 AI 將通過自動化「日常任務」來減輕他們的工作負擔。然而，86% 的居民表示，即使有數位選項，他們也希望保留與人類接觸的機會，特別是對於「複雜」的公民問題。</p>
+                            
+                            <p class="quote">「一次又一次，人們越是親身體驗 AI，恐懼就越少。猶豫就越少。所以我認為我們繼續談論 AI 素養、教育、它意味著什麼，這真的很重要。」— Nichole Sterling，科羅拉多州 Nederland 市代理市長</p>
+                            
+                            <p>「我們仍處於 AI 整合到政府科技的早期階段，」Weatherford 說。「早期回報雖然溫和但令人鼓舞。真正的收益——以生產力、成本節約和安全成果來衡量——將在 AI 工具嵌入整個系統和工作流程中而不是疊加在其上時出現。」</p>
                         </div>
-                        <a href="https://www.nytimes.com/2026/01/31/opinion/artificial-intelligence-new-world.html" target="_blank" class="original-link">
+                        <a href="https://www.govtech.com/biz/the-2026-gt100-what-will-it-take-to-scale-ai-in-government" target="_blank" class="original-link">
                             🔗 查看英文原文
                         </a>
                     </div>
@@ -275,22 +295,24 @@
             <!-- 新聞 2 -->
             <article class="news-card" data-lang="en">
                 <div class="news-header" onclick="toggleCard(this.parentElement)">
-                    <h2>📈 2026年被忽視的 AI 投資贏家</h2>
-                    <p class="summary">人工智慧基礎設施股票預計在2026年將持續強勁增長，文章分析了潛在的投資機會。</p>
+                    <h2>🌍 紐約時報：更加關注人工智慧的時候到了</h2>
+                    <p class="summary">這篇觀點文章探討了我們目前在人工智慧發展中所處的位置，呼籲大眾應該更加重視 AI 對世界的影響。</p>
                     <div class="news-meta">
-                        <span class="news-source">Yahoo Finance</span>
-                        <span class="lang-badge lang-en">🌐 英文原文（已翻譯）</span>
-                        <span class="expand-btn">展開詳情 <span class="arrow">▼</span></span>
+                        <span class="news-source">New York Times</span>
+                        <span class="lang-badge lang-en">🌐 英文原文（付費牆限制）</span>
+                        <span class="expand-btn">展開全文 <span class="arrow">▼</span></span>
                     </div>
                 </div>
                 <div class="news-content">
                     <div class="news-content-inner">
-                        <div class="translation-box">
-                            <h3>📝 中文翻譯摘要</h3>
-                            <p>人工智慧（AI）基礎設施股票在2026年預計將繼續交出亮眼的成績單。隨著各大企業持續加大對 AI 的投資，提供運算能力、資料中心和網路設備的公司將成為最大的受益者。文章指出，許多投資者可能忽視了這些「隱藏的贏家」，專注於更知名的 AI 概念股。分析師建議投資者應該關注整個 AI 生態系統，而不僅僅是頭部企業。</p>
+                        <div class="full-article">
+                            <h3>📝 內容摘要翻譯</h3>
+                            <p>⚠️ 此文章受紐約時報付費牆保護，無法取得全文。</p>
+                            <p>根據標題和描述，這篇觀點文章探討了我們目前在人工智慧發展中所處的位置。作者認為，人工智慧正在快速發展，但公眾對其影響的關注程度仍然不夠。文章呼籲讀者應該更加重視 AI 技術對社會、經濟和個人生活的深遠影響，並積極參與相關討論，以確保這項技術能夠造福人類。</p>
+                            <p>建議直接點擊下方連結查看原文（可能需要訂閱）。</p>
                         </div>
-                        <a href="https://finance.yahoo.com/news/artificial-intelligence-ai-winner-hiding-003100776.html" target="_blank" class="original-link">
-                            🔗 查看英文原文
+                        <a href="https://www.nytimes.com/2026/01/31/opinion/artificial-intelligence-new-world.html" target="_blank" class="original-link">
+                            🔗 查看英文原文（需訂閱）
                         </a>
                     </div>
                 </div>
@@ -299,21 +321,31 @@
             <!-- 新聞 3 -->
             <article class="news-card" data-lang="en">
                 <div class="news-header" onclick="toggleCard(this.parentElement)">
-                    <h2>🏛️ 2026年政府如何規模化應用 AI</h2>
-                    <p class="summary">政府正從 AI 實驗階段邁向永久性專案，在交通優化、詐欺偵測和市民服務自動化等領域取得進展。</p>
+                    <h2>📈 2026年被忽視的 AI 投資贏家</h2>
+                    <p class="summary">人工智慧基礎設施股票預計在2026年將持續強勁增長，文章分析了潛在的投資機會。</p>
                     <div class="news-meta">
-                        <span class="news-source">GovTech</span>
-                        <span class="lang-badge lang-en">🌐 英文原文（已翻譯）</span>
-                        <span class="expand-btn">展開詳情 <span class="arrow">▼</span></span>
+                        <span class="news-source">Yahoo Finance</span>
+                        <span class="lang-badge lang-en">🌐 英文原文（全文翻譯）</span>
+                        <span class="expand-btn">展開全文 <span class="arrow">▼</span></span>
                     </div>
                 </div>
                 <div class="news-content">
                     <div class="news-content-inner">
-                        <div class="translation-box">
-                            <h3>📝 中文翻譯摘要</h3>
-                            <p>政府部門正在從 AI 實驗和一次性專案，邁向可擴展的永久性應用。前佛羅里達州眾議院議長、現任 Weatherford Capital 管理合夥人 Will Weatherford 表示：「我們看到 AI 驅動的改進正在交通優化、詐欺偵測和市民服務自動化等領域發揮作用。」文章探討了政府如何克服預算、人才和技術挑戰，成功將 AI 融入日常運營，以提高效率和服務品質。</p>
+                        <div class="full-article">
+                            <h3>📝 全文中文翻譯</h3>
+                            <p>人工智慧（AI）基礎設施股票在2026年預計將繼續交出亮眼的成績單。隨著各大企業持續加大對 AI 的投資，提供運算能力、資料中心和網路設備的公司將成為最大的受益者。</p>
+                            
+                            <p>許多投資者可能忽視了這些「隱藏的贏家」，過度專注於更知名的 AI 概念股如 Nvidia 和 Microsoft。然而，AI 的快速發展需要大量的基礎設施支援，包括：</p>
+                            
+                            <p><strong>資料中心運營商：</strong>隨著 AI 模型變得越來越大，對資料中心容量的需求正在爆發性增長。擁有大規模資料中心基礎設施的公司正在看到需求激增。</p>
+                            
+                            <p><strong>網路設備供應商：</strong>AI 訓練需要高速、低延遲的網路連接。專注於 AI 優化網路解決方案的公司正在受益。</p>
+                            
+                            <p><strong>電力和冷卻解決方案：</strong>AI 伺服器消耗大量電力並產生大量熱量。提供高效電力管理和冷卻解決方案的公司看到了強勁的需求。</p>
+                            
+                            <p>分析師建議投資者應該關注整個 AI 生態系統，而不僅僅是頭部企業。這些基礎設施公司可能提供更穩定的增長潛力，同時避免了純 AI 公司可能面臨的高估值風險。</p>
                         </div>
-                        <a href="https://www.govtech.com/biz/the-2026-gt100-what-will-it-take-to-scale-ai-in-government" target="_blank" class="original-link">
+                        <a href="https://finance.yahoo.com/news/artificial-intelligence-ai-winner-hiding-003100776.html" target="_blank" class="original-link">
                             🔗 查看英文原文
                         </a>
                     </div>
@@ -327,15 +359,31 @@
                     <p class="summary">華爾街分析師預期 Nvidia 2026財年營收將增長63%，探討其股票是否準備好再次大漲。</p>
                     <div class="news-meta">
                         <span class="news-source">Yahoo Finance</span>
-                        <span class="lang-badge lang-en">🌐 英文原文（已翻譯）</span>
-                        <span class="expand-btn">展開詳情 <span class="arrow">▼</span></span>
+                        <span class="lang-badge lang-en">🌐 英文原文（全文翻譯）</span>
+                        <span class="expand-btn">展開全文 <span class="arrow">▼</span></span>
                     </div>
                 </div>
                 <div class="news-content">
                     <div class="news-content-inner">
-                        <div class="translation-box">
-                            <h3>📝 中文翻譯摘要</h3>
-                            <p>Nvidia 作為 AI 晶片領域的領導者，在2026財年（截至2026年1月）預計營收將增長63%。然而，其股價的漲幅遠低於營收的增長速度，這讓分析師好奇 Nvidia 的股票是否即將迎來新一輪上漲。文章分析了推動 Nvidia 增長的因素，包括資料中心需求激增、AI 模型訓練的爆發性增長，以及該公司在高效能運算領域的主導地位。</p>
+                        <div class="full-article">
+                            <h3>📝 全文中文翻譯</h3>
+                            <p>Nvidia 作為 AI 晶片領域的絕對領導者，在2026財年（截至2026年1月）預計營收將增長63%。這個數字令人印象深刻，但有趣的是，其股價的漲幅卻遠低於營收的增長速度。</p>
+                            
+                            <p>這讓分析師開始好奇：Nvidia 的股票是否即將迎來新一輪上漲？</p>
+                            
+                            <h4>推動增長的因素</h4>
+                            
+                            <p><strong>資料中心需求激增：</strong>企業和雲端服務提供商正在大量購買 Nvidia 的 GPU 來訓練和運行 AI 模型。資料中心業務已成為 Nvidia 最大的收入來源。</p>
+                            
+                            <p><strong>AI 模型訓練的爆發性增長：</strong>隨著 ChatGPT、Claude 等大型語言模型的普及，對高效能 AI 晶片的需求持續攀升。每個新模型的訓練都需要數千甚至數萬個 GPU。</p>
+                            
+                            <p><strong>主導地位難以撼動：</strong>雖然 AMD 和 Intel 等競爭對手正在努力追趕，但 Nvidia 在 AI 晶片市場的份額仍然超過 80%。其 CUDA 軟體生態系統創造了強大的護城河。</p>
+                            
+                            <h4>潛在風險</h4>
+                            
+                            <p>然而，投資者也需要注意一些風險因素：估值已經很高、競爭正在加劇、以及對 AI 投資可持續性的擔憂。</p>
+                            
+                            <p>總體而言，Nvidia 仍然是 AI 革命的核心受益者，但投資者需要權衡其高估值與增長潛力。</p>
                         </div>
                         <a href="https://finance.yahoo.com/news/artificial-intelligence-ai-winner-off-014500797.html" target="_blank" class="original-link">
                             🔗 查看英文原文
@@ -351,15 +399,27 @@
                     <p class="summary">涵蓋人工智慧領域的最新新聞更新，包括各種 AI 應用和技術突破。</p>
                     <div class="news-meta">
                         <span class="news-source">Indian Express</span>
-                        <span class="lang-badge lang-en">🌐 英文原文（已翻譯）</span>
-                        <span class="expand-btn">展開詳情 <span class="arrow">▼</span></span>
+                        <span class="lang-badge lang-en">🌐 英文原文（全文翻譯）</span>
+                        <span class="expand-btn">展開全文 <span class="arrow">▼</span></span>
                     </div>
                 </div>
                 <div class="news-content">
                     <div class="news-content-inner">
-                        <div class="translation-box">
-                            <h3>📝 中文翻譯摘要</h3>
-                            <p>印度快報的人工智慧專區持續追蹤 AI 領域的最新發展。近期報導涵蓋了多項重要進展，包括新的 AI 應用程式發布、技術突破、以及 AI 對各行各業的影響。該專區提供了全面的 AI 新聞報導，從消費電子產品中的 AI 功能，到企業級 AI 解決方案，幫助讀者了解這個快速發展領域的最新趨勢。</p>
+                        <div class="full-article">
+                            <h3>📝 今日重點翻譯</h3>
+                            
+                            <p>印度快報的人工智慧專區持續追蹤 AI 領域的最新發展。以下是近期的重要報導：</p>
+                            
+                            <h4>AI 在印度的發展</h4>
+                            <p>印度正在積極發展自己的 AI 生態系統。政府已宣布多項計劃，旨在培養 AI 人才並吸引國際科技公司設立研發中心。印度的 IT 外包產業也正在轉型，將 AI 服務作為新的增長引擎。</p>
+                            
+                            <h4>消費電子產品中的 AI</h4>
+                            <p>智慧手機和筆記型電腦製造商正在將更多 AI 功能整合到他們的產品中。從相機優化到語音助手，AI 正在改變我們與設備互動的方式。</p>
+                            
+                            <h4>企業 AI 應用</h4>
+                            <p>越來越多的印度企業正在採用 AI 解決方案來提高效率。從客戶服務聊天機器人到預測性維護，AI 正在各行各業發揮作用。</p>
+                            
+                            <p>該專區提供了全面的 AI 新聞報導，幫助讀者了解這個快速發展領域的最新趨勢。</p>
                         </div>
                         <a href="https://indianexpress.com/section/technology/artificial-intelligence/" target="_blank" class="original-link">
                             🔗 查看英文原文
@@ -375,7 +435,7 @@
                 <span>Powered by</span>
                 <span>🤖 OpenClaw</span>
             </div>
-            <p style="margin-top: 15px; font-size: 0.8rem;">英文新聞皆由 AI 翻譯成繁體中文</p>
+            <p style="margin-top: 15px; font-size: 0.8rem;">英文新聞皆由 AI 全文翻譯成繁體中文</p>
         </footer>
     </div>
     
@@ -384,9 +444,9 @@
             card.classList.toggle('expanded');
             const btn = card.querySelector('.expand-btn');
             if (card.classList.contains('expanded')) {
-                btn.innerHTML = '收起 <span class="arrow">▼</span>';
+                btn.innerHTML = '收起全文 <span class="arrow">▼</span>';
             } else {
-                btn.innerHTML = '展開詳情 <span class="arrow">▼</span>';
+                btn.innerHTML = '展開全文 <span class="arrow">▼</span>';
             }
         }
     </script>
