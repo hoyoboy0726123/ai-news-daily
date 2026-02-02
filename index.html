@@ -14,6 +14,8 @@
             --text: #f1f5f9;
             --text-muted: #94a3b8;
             --accent: #22d3ee;
+            --success: #10b981;
+            --warning: #f59e0b;
         }
         
         * {
@@ -72,19 +74,19 @@
         .news-card {
             background: var(--card-bg);
             border-radius: 16px;
-            padding: 25px;
+            overflow: hidden;
             transition: all 0.3s ease;
             border: 1px solid transparent;
-            cursor: pointer;
-            text-decoration: none;
-            color: inherit;
-            display: block;
         }
         
         .news-card:hover {
-            transform: translateY(-5px);
             border-color: var(--accent);
             box-shadow: 0 10px 30px rgba(34, 211, 238, 0.2);
+        }
+        
+        .news-header {
+            padding: 25px;
+            cursor: pointer;
         }
         
         .news-card h2 {
@@ -94,7 +96,7 @@
             line-height: 1.4;
         }
         
-        .news-card p {
+        .news-card .summary {
             color: var(--text-muted);
             font-size: 1rem;
             margin-bottom: 15px;
@@ -106,6 +108,8 @@
             align-items: center;
             font-size: 0.875rem;
             color: var(--text-muted);
+            flex-wrap: wrap;
+            gap: 10px;
         }
         
         .news-source {
@@ -115,11 +119,91 @@
             color: var(--accent);
         }
         
-        .read-more {
+        .lang-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .lang-en {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--warning);
+        }
+        
+        .lang-zh {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+        }
+        
+        .expand-btn {
             color: var(--accent);
             display: flex;
             align-items: center;
             gap: 5px;
+            cursor: pointer;
+        }
+        
+        .expand-btn .arrow {
+            transition: transform 0.3s ease;
+        }
+        
+        .news-card.expanded .expand-btn .arrow {
+            transform: rotate(180deg);
+        }
+        
+        .news-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            background: rgba(0,0,0,0.2);
+        }
+        
+        .news-card.expanded .news-content {
+            max-height: 2000px;
+        }
+        
+        .news-content-inner {
+            padding: 25px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .translation-box {
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .translation-box h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .translation-box p {
+            color: var(--text);
+            line-height: 1.8;
+        }
+        
+        .original-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .original-link:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
         }
         
         footer {
@@ -149,6 +233,10 @@
             .news-card h2 {
                 font-size: 1.1rem;
             }
+            .news-meta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
     </style>
 </head>
@@ -156,54 +244,129 @@
     <div class="container">
         <header>
             <h1><span class="emoji">🤖</span> AI 每日新聞</h1>
-            <p class="update-time">更新時間：2026年2月2日 19:17</p>
+            <p class="update-time">更新時間：2026年2月2日 19:21</p>
         </header>
         
         <main class="news-list">
-            <a href="https://www.nytimes.com/2026/01/31/opinion/artificial-intelligence-new-world.html" target="_blank" class="news-card">
-                <h2>🌍 紐約時報：更加關注人工智慧的時候到了</h2>
-                <p>這篇觀點文章探討了我們目前在人工智慧發展中所處的位置，呼籲大眾應該更加重視 AI 對世界的影響。</p>
-                <div class="news-meta">
-                    <span class="news-source">New York Times</span>
-                    <span class="read-more">閱讀全文 →</span>
+            <!-- 新聞 1 -->
+            <article class="news-card" data-lang="en">
+                <div class="news-header" onclick="toggleCard(this.parentElement)">
+                    <h2>🌍 紐約時報：更加關注人工智慧的時候到了</h2>
+                    <p class="summary">這篇觀點文章探討了我們目前在人工智慧發展中所處的位置，呼籲大眾應該更加重視 AI 對世界的影響。</p>
+                    <div class="news-meta">
+                        <span class="news-source">New York Times</span>
+                        <span class="lang-badge lang-en">🌐 英文原文（已翻譯）</span>
+                        <span class="expand-btn">展開詳情 <span class="arrow">▼</span></span>
+                    </div>
                 </div>
-            </a>
+                <div class="news-content">
+                    <div class="news-content-inner">
+                        <div class="translation-box">
+                            <h3>📝 中文翻譯摘要</h3>
+                            <p>這篇文章大致反映了我們目前對人工智慧的態度。作者認為，人工智慧正在快速發展，但公眾對其影響的關注程度仍然不夠。文章呼籲讀者應該更加重視 AI 技術對社會、經濟和個人生活的深遠影響，並積極參與相關討論，以確保這項技術能夠造福人類。</p>
+                        </div>
+                        <a href="https://www.nytimes.com/2026/01/31/opinion/artificial-intelligence-new-world.html" target="_blank" class="original-link">
+                            🔗 查看英文原文
+                        </a>
+                    </div>
+                </div>
+            </article>
             
-            <a href="https://finance.yahoo.com/news/artificial-intelligence-ai-winner-hiding-003100776.html" target="_blank" class="news-card">
-                <h2>📈 2026年被忽視的 AI 投資贏家</h2>
-                <p>人工智慧基礎設施股票預計在2026年將持續強勁增長，文章分析了潛在的投資機會。</p>
-                <div class="news-meta">
-                    <span class="news-source">Yahoo Finance</span>
-                    <span class="read-more">閱讀全文 →</span>
+            <!-- 新聞 2 -->
+            <article class="news-card" data-lang="en">
+                <div class="news-header" onclick="toggleCard(this.parentElement)">
+                    <h2>📈 2026年被忽視的 AI 投資贏家</h2>
+                    <p class="summary">人工智慧基礎設施股票預計在2026年將持續強勁增長，文章分析了潛在的投資機會。</p>
+                    <div class="news-meta">
+                        <span class="news-source">Yahoo Finance</span>
+                        <span class="lang-badge lang-en">🌐 英文原文（已翻譯）</span>
+                        <span class="expand-btn">展開詳情 <span class="arrow">▼</span></span>
+                    </div>
                 </div>
-            </a>
+                <div class="news-content">
+                    <div class="news-content-inner">
+                        <div class="translation-box">
+                            <h3>📝 中文翻譯摘要</h3>
+                            <p>人工智慧（AI）基礎設施股票在2026年預計將繼續交出亮眼的成績單。隨著各大企業持續加大對 AI 的投資，提供運算能力、資料中心和網路設備的公司將成為最大的受益者。文章指出，許多投資者可能忽視了這些「隱藏的贏家」，專注於更知名的 AI 概念股。分析師建議投資者應該關注整個 AI 生態系統，而不僅僅是頭部企業。</p>
+                        </div>
+                        <a href="https://finance.yahoo.com/news/artificial-intelligence-ai-winner-hiding-003100776.html" target="_blank" class="original-link">
+                            🔗 查看英文原文
+                        </a>
+                    </div>
+                </div>
+            </article>
             
-            <a href="https://www.govtech.com/biz/the-2026-gt100-what-will-it-take-to-scale-ai-in-government" target="_blank" class="news-card">
-                <h2>🏛️ 2026年政府如何規模化應用 AI</h2>
-                <p>政府正從 AI 實驗階段邁向永久性專案，在交通優化、詐欺偵測和市民服務自動化等領域取得進展。</p>
-                <div class="news-meta">
-                    <span class="news-source">GovTech</span>
-                    <span class="read-more">閱讀全文 →</span>
+            <!-- 新聞 3 -->
+            <article class="news-card" data-lang="en">
+                <div class="news-header" onclick="toggleCard(this.parentElement)">
+                    <h2>🏛️ 2026年政府如何規模化應用 AI</h2>
+                    <p class="summary">政府正從 AI 實驗階段邁向永久性專案，在交通優化、詐欺偵測和市民服務自動化等領域取得進展。</p>
+                    <div class="news-meta">
+                        <span class="news-source">GovTech</span>
+                        <span class="lang-badge lang-en">🌐 英文原文（已翻譯）</span>
+                        <span class="expand-btn">展開詳情 <span class="arrow">▼</span></span>
+                    </div>
                 </div>
-            </a>
+                <div class="news-content">
+                    <div class="news-content-inner">
+                        <div class="translation-box">
+                            <h3>📝 中文翻譯摘要</h3>
+                            <p>政府部門正在從 AI 實驗和一次性專案，邁向可擴展的永久性應用。前佛羅里達州眾議院議長、現任 Weatherford Capital 管理合夥人 Will Weatherford 表示：「我們看到 AI 驅動的改進正在交通優化、詐欺偵測和市民服務自動化等領域發揮作用。」文章探討了政府如何克服預算、人才和技術挑戰，成功將 AI 融入日常運營，以提高效率和服務品質。</p>
+                        </div>
+                        <a href="https://www.govtech.com/biz/the-2026-gt100-what-will-it-take-to-scale-ai-in-government" target="_blank" class="original-link">
+                            🔗 查看英文原文
+                        </a>
+                    </div>
+                </div>
+            </article>
             
-            <a href="https://finance.yahoo.com/news/artificial-intelligence-ai-winner-off-014500797.html" target="_blank" class="news-card">
-                <h2>🚀 Nvidia 在2026年是否即將起飛？</h2>
-                <p>華爾街分析師預期 Nvidia 2026財年營收將增長63%，探討其股票是否準備好再次大漲。</p>
-                <div class="news-meta">
-                    <span class="news-source">Yahoo Finance</span>
-                    <span class="read-more">閱讀全文 →</span>
+            <!-- 新聞 4 -->
+            <article class="news-card" data-lang="en">
+                <div class="news-header" onclick="toggleCard(this.parentElement)">
+                    <h2>🚀 Nvidia 在2026年是否即將起飛？</h2>
+                    <p class="summary">華爾街分析師預期 Nvidia 2026財年營收將增長63%，探討其股票是否準備好再次大漲。</p>
+                    <div class="news-meta">
+                        <span class="news-source">Yahoo Finance</span>
+                        <span class="lang-badge lang-en">🌐 英文原文（已翻譯）</span>
+                        <span class="expand-btn">展開詳情 <span class="arrow">▼</span></span>
+                    </div>
                 </div>
-            </a>
+                <div class="news-content">
+                    <div class="news-content-inner">
+                        <div class="translation-box">
+                            <h3>📝 中文翻譯摘要</h3>
+                            <p>Nvidia 作為 AI 晶片領域的領導者，在2026財年（截至2026年1月）預計營收將增長63%。然而，其股價的漲幅遠低於營收的增長速度，這讓分析師好奇 Nvidia 的股票是否即將迎來新一輪上漲。文章分析了推動 Nvidia 增長的因素，包括資料中心需求激增、AI 模型訓練的爆發性增長，以及該公司在高效能運算領域的主導地位。</p>
+                        </div>
+                        <a href="https://finance.yahoo.com/news/artificial-intelligence-ai-winner-off-014500797.html" target="_blank" class="original-link">
+                            🔗 查看英文原文
+                        </a>
+                    </div>
+                </div>
+            </article>
             
-            <a href="https://indianexpress.com/section/technology/artificial-intelligence/" target="_blank" class="news-card">
-                <h2>🇮🇳 印度快報：AI 技術最新動態</h2>
-                <p>涵蓋人工智慧領域的最新新聞更新，包括各種 AI 應用和技術突破。</p>
-                <div class="news-meta">
-                    <span class="news-source">Indian Express</span>
-                    <span class="read-more">閱讀全文 →</span>
+            <!-- 新聞 5 -->
+            <article class="news-card" data-lang="en">
+                <div class="news-header" onclick="toggleCard(this.parentElement)">
+                    <h2>🇮🇳 印度快報：AI 技術最新動態</h2>
+                    <p class="summary">涵蓋人工智慧領域的最新新聞更新，包括各種 AI 應用和技術突破。</p>
+                    <div class="news-meta">
+                        <span class="news-source">Indian Express</span>
+                        <span class="lang-badge lang-en">🌐 英文原文（已翻譯）</span>
+                        <span class="expand-btn">展開詳情 <span class="arrow">▼</span></span>
+                    </div>
                 </div>
-            </a>
+                <div class="news-content">
+                    <div class="news-content-inner">
+                        <div class="translation-box">
+                            <h3>📝 中文翻譯摘要</h3>
+                            <p>印度快報的人工智慧專區持續追蹤 AI 領域的最新發展。近期報導涵蓋了多項重要進展，包括新的 AI 應用程式發布、技術突破、以及 AI 對各行各業的影響。該專區提供了全面的 AI 新聞報導，從消費電子產品中的 AI 功能，到企業級 AI 解決方案，幫助讀者了解這個快速發展領域的最新趨勢。</p>
+                        </div>
+                        <a href="https://indianexpress.com/section/technology/artificial-intelligence/" target="_blank" class="original-link">
+                            🔗 查看英文原文
+                        </a>
+                    </div>
+                </div>
+            </article>
         </main>
         
         <footer>
@@ -212,7 +375,20 @@
                 <span>Powered by</span>
                 <span>🤖 OpenClaw</span>
             </div>
+            <p style="margin-top: 15px; font-size: 0.8rem;">英文新聞皆由 AI 翻譯成繁體中文</p>
         </footer>
     </div>
+    
+    <script>
+        function toggleCard(card) {
+            card.classList.toggle('expanded');
+            const btn = card.querySelector('.expand-btn');
+            if (card.classList.contains('expanded')) {
+                btn.innerHTML = '收起 <span class="arrow">▼</span>';
+            } else {
+                btn.innerHTML = '展開詳情 <span class="arrow">▼</span>';
+            }
+        }
+    </script>
 </body>
 </html>
