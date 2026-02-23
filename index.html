@@ -103,11 +103,6 @@
             font-size: 0.8rem;
         }
         
-        .lang-en {
-            background: rgba(245, 158, 11, 0.2);
-            color: var(--warning);
-        }
-        
         .lang-zh {
             background: rgba(16, 185, 129, 0.2);
             color: var(--success);
@@ -223,250 +218,131 @@
     <div class="container">
         <header>
             <h1><span>🤖</span> AI 每日新聞</h1>
-            <p class="update-time">更新時間：2026年2月8日 09:00</p>
+            <p class="update-time">更新時間：2026年2月23日 18:30</p>
         </header>
         
         <main class="news-list">
-            <!-- 新聞 1：AGI 已經到來？ -->
-            <article class="news-card" data-lang="en">
+            <!-- 新聞 1 -->
+            <article class="news-card" data-lang="zh">
                 <div class="news-header" onclick="toggleCard(this.parentElement)">
-                    <h2>🧠 學者爭議：通用人工智慧（AGI）已經到來？</h2>
-                    <p class="summary">加州大學聖地亞哥分校四位學者在《Nature》發表評論，從哲學、機器學習、語言學和認知科學角度得出爭議性結論：按照合理標準，現有大型語言模型已構成 AGI。</p>
+                    <h2>🚀 DeepMind 哈薩比斯預言：AI 將開啟未來 10-15 年「科學發現黃金時代」</h2>
+                    <p class="summary">Google DeepMind 執行長 Demis Hassabis 預測，AI 將透過解決能源、醫療和材料科學等難題，引領人類進入全新的科學發現黃金時代。</p>
                     <div class="news-meta">
-                        <span class="news-source">TechXplore / Nature</span>
-                        <span class="lang-badge lang-en">🌐 英文原文（全文翻譯）</span>
+                        <span class="news-source">TechNews 科技新報</span>
+                        <span class="lang-badge lang-zh">🇹🇼 繁體中文</span>
                         <span class="expand-btn">展開全文 <span class="arrow">▼</span></span>
                     </div>
                 </div>
                 <div class="news-content">
                     <div class="news-content-inner">
                         <div class="full-article">
-                            <h3>📝 全文中文翻譯</h3>
-                            
-                            <p>人工智慧是否能夠達到與人類相當的推理、學習和問題解決能力？加州大學聖地亞哥分校的專家認為答案是肯定的——而且這種<strong>通用人工智慧（AGI）已經到來</strong>。</p>
-                            
-                            <h4>圖靈測試的實現</h4>
-                            <p>電腦科學家艾倫·圖靈在 1950 年的里程碑論文中首次提出這個問題，他的「模仿遊戲」（現稱圖靈測試）詢問機器是否能在文字對話中被人類認為是人類。75 年後，這個未來已經到來。</p>
-                            
-                            <p>另一組加州大學聖地亞哥分校的研究人員在 2025 年 3 月發現，大型語言模型 <strong>GPT-4.5 在圖靈測試中有 73% 的時間被判斷為人類</strong>——遠高於實際人類的表現。</p>
-                            
-                            <h4>四位學者的結論</h4>
-                            <p>哲學副教授 Eddy Keming Chen、人工智慧教授 Mikhail Belkin、語言學副教授 Leon Bergen 和數據科學教授 David Danks 從不同學科角度研究這個問題，得出爭議性結論：</p>
-                            
-                            <p class="quote">「按照合理標準，現有的大型語言模型已經構成 AGI。」</p>
-                            
-                            <h4>什麼是通用智慧？</h4>
-                            <p>論文將智慧的<strong>廣度</strong>定義為跨多個領域的能力——數學、語言、科學、實踐推理、創意任務——而<strong>深度</strong>則是在這些領域內的強勁表現，而非膚淺參與。</p>
-                            
-                            <p>「有一個常見的誤解認為 AGI 必須是完美的——知道一切、解決所有問題——但沒有任何人類個體能做到這一點。」Chen 解釋道，「辯論經常將通用智慧與超級智慧混為一談。真正的問題是 LLM 是否展示了人類思維特有的靈活、通用能力。我們的結論是：就個體人類擁有通用智慧而言，現有 LLM 也擁有。」</p>
-                            
-                            <h4>這意味著什麼？</h4>
-                            <p>• AGI 的定義需要重新審視<br>
-                            • LLM 已展現跨領域的通用能力<br>
-                            • 不應將 AGI 與超級智慧混淆<br>
-                            • 對 AI 安全和倫理的討論更加緊迫</p>
+                            <h3>📝 內容摘要</h3>
+                            <p>Google DeepMind 執行長、諾貝爾獎得主傑米斯·哈薩比斯（Demis Hassabis）近期預測，人類將在未來 10 到 15 年內迎來一個全新的「發現黃金時代」。他指出，人工智慧將成功將科學方法應用於解決地球上最棘手的問題，包括醫療、能源和材料科學。</p>
+                            <p>哈薩比斯強調，AI 能使個性化治療成為可能，並治癒重大疾病。在能源領域，AI 有望助力核融合或太陽能技術的突破。此外，他提到 DeepMind 的 AlphaFold 模型已解決了長達 50 年的「蛋白質摺疊問題」，目前已有超過 300 萬名研究人員在使用，這僅僅是 AI 變革科學研究的開端。</p>
+                            <p class="quote">「我們的使命是解決智慧，然後利用它來解決其他所有問題。」</p>
                         </div>
-                        <a href="https://techxplore.com/news/2026-02-artificial-general-intelligence-case-today.html" target="_blank" class="original-link">
-                            🔗 查看英文原文
+                        <a href="https://technews.tw/2026/02/23/googles-nobel-winning-ai-leader-sees-a-renaissance-ahead" target="_blank" class="original-link">
+                            🔗 查看原文
                         </a>
                     </div>
                 </div>
             </article>
             
-            <!-- 新聞 2：Amazon 2000億美元 AI 投資 -->
-            <article class="news-card" data-lang="en">
+            <!-- 新聞 2 -->
+            <article class="news-card" data-lang="zh">
                 <div class="news-header" onclick="toggleCard(this.parentElement)">
-                    <h2>💰 Amazon 宣布 2026 年投入 2000 億美元建設 AI 基礎設施</h2>
-                    <p class="summary">Amazon 計劃在 2026 年投入約 2000 億美元用於 AI 基礎設施，遠超華爾街預期。CEO Andy Jassy 確認將增加 Trainium 晶片部署，用於 AI 訓練。</p>
+                    <h2>⚔️ AI 編碼工具的雙面刃：開源軟體發展走向兩極化</h2>
+                    <p class="summary">雖然 AI 工具降低了開發門檻，但大量低品質的「AI 垃圾代碼」也給開源專案維護者帶來沉重負擔，引發專案管理模式的變革。</p>
                     <div class="news-meta">
-                        <span class="news-source">Technobezz / CNBC</span>
-                        <span class="lang-badge lang-en">🌐 英文原文（全文翻譯）</span>
+                        <span class="news-source">TechNews 科技新報</span>
+                        <span class="lang-badge lang-zh">🇹🇼 繁體中文</span>
                         <span class="expand-btn">展開全文 <span class="arrow">▼</span></span>
                     </div>
                 </div>
                 <div class="news-content">
                     <div class="news-content-inner">
                         <div class="full-article">
-                            <h3>📝 全文中文翻譯</h3>
-                            
-                            <p>Amazon 計劃在 2026 年投入約 <strong>2000 億美元用於 AI 基礎設施</strong>，遠超華爾街預期。公司的投資表明雲端平台對 AI 硬體的需求持續強勁。</p>
-                            
-                            <h4>投資重點</h4>
-                            <p>• <strong>Trainium 晶片</strong>：Amazon 自研的 AI 訓練晶片，將增加部署<br>
-                            • <strong>AWS 雲端服務</strong>：持續擴建數據中心<br>
-                            • <strong>AI 模型訓練</strong>：支援各種規模的企業客戶</p>
-                            
-                            <h4>投資者反應</h4>
-                            <p>消息公布後，Amazon 股價一度下跌 9%，投資者擔憂：</p>
-                            
-                            <p>• 2000 億美元的規模令人震驚<br>
-                            • AI 投資回報週期不確定<br>
-                            • 短期獲利能力可能受壓</p>
-                            
-                            <h4>與競爭對手比較</h4>
-                            <p>美國四大科技公司（Amazon、Google、Microsoft、Meta）2026 年資本支出預計合計達 <strong>6500 億美元</strong>，其中 Amazon 獨佔最大份額。</p>
-                            
-                            <h4>CEO 的信心</h4>
-                            <p>CEO Andy Jassy 表示對這筆投資充滿信心，強調：</p>
-                            
-                            <p class="quote">「AI 需求持續超出預期，我們必須現在就建設，才能在未來滿足客戶需求。」</p>
-                            
-                            <h4>產業影響</h4>
-                            <p>• 利好晶片供應商（Nvidia、AMD）<br>
-                            • 數據中心建設熱潮持續<br>
-                            • 電力基礎設施承壓<br>
-                            • AI 人才競爭加劇</p>
+                            <h3>📝 內容摘要</h3>
+                            <p>隨著 AI 編碼工具（如 Vibe Coding）的興起，軟體開發變得更廉價且高效，但這對開源軟體生態系也帶來了意想不到的衝擊。專家指出，AI 工具雖然降低了進入門檻，卻也導致大量品質不佳的程式碼湧入開源專案，增加了維護成本。</p>
+                            <p>知名專案如 VLC 和 Blender 的負責人都表示，近期收到的合併請求（Merge Requests）品質明顯下降，許多 AI 生成的代碼雖然能跑，但缺乏維護性。這導致一些專案開始限制貢獻權限，以防止「AI 垃圾」干擾開發流程。AI 工具正迫使軟體工程重新思考：我們是在產出代碼，還是在管理軟體的複雜性？</p>
                         </div>
-                        <a href="https://www.technobezz.com/news/amazon-plans-to-spend-200-billion-on-ai-infrastructure-in-2026" target="_blank" class="original-link">
-                            🔗 查看英文原文
+                        <a href="https://technews.tw/2026/02/23/ai-coding-tools-are-a-mixed-blessing" target="_blank" class="original-link">
+                            🔗 查看原文
                         </a>
                     </div>
                 </div>
             </article>
             
-            <!-- 新聞 3：Alphabet 股價波動 -->
-            <article class="news-card" data-lang="en">
+            <!-- 新聞 3 -->
+            <article class="news-card" data-lang="zh">
                 <div class="news-header" onclick="toggleCard(this.parentElement)">
-                    <h2>📈 Alphabet 股價一年飆漲 74% 後回落，AI 支出引發投資者審視</h2>
-                    <p class="summary">Alphabet 股價在過去一年因 AI 和雲端服務進展飆漲 74%，但 Q4 財報後下跌 4.3%。公司宣布 2026 年資本支出達 1750-1850 億美元，幾乎是 2025 年的兩倍。</p>
+                    <h2>📱 庫克退休前能看到 AI Siri 嗎？傳蘋果新 Siri 將再次跳票</h2>
+                    <p class="summary">報導指出 Apple 的 AI Siri 因準確性與隱私保護挑戰將延後推出，最早可能要到 iOS 26.5 版本，且部分功能可能分批上線。</p>
                     <div class="news-meta">
-                        <span class="news-source">TECHi / Forbes / Reuters</span>
-                        <span class="lang-badge lang-en">🌐 英文原文（全文翻譯）</span>
+                        <span class="news-source">TechNews 科技新報</span>
+                        <span class="lang-badge lang-zh">🇹🇼 繁體中文</span>
                         <span class="expand-btn">展開全文 <span class="arrow">▼</span></span>
                     </div>
                 </div>
                 <div class="news-content">
                     <div class="news-content-inner">
                         <div class="full-article">
-                            <h3>📝 全文中文翻譯</h3>
-                            
-                            <p>Alphabet 股價在 2025 年 2 月至 2026 年初之間<strong>飆漲 74%</strong>，主要受惠於人工智慧和雲端服務的重大進展。但 Q4 財報公布後，股價下跌 4.3%。</p>
-                            
-                            <h4>Q4 2025 亮眼數據</h4>
-                            <p>• <strong>總營收</strong>：1138 億美元，年增 18%<br>
-                            • <strong>淨利潤</strong>：345 億美元，年增 30%<br>
-                            • <strong>每股盈餘</strong>：2.82 美元，年增 31%<br>
-                            • <strong>Google Cloud 增長</strong>：48%，連續增長 25 億美元</p>
-                            
-                            <h4>Gemini 3 的成功</h4>
-                            <p>Gemini 3 用戶數達到 <strong>7.5 億月活躍用戶</strong>，Sundar Pichai 稱其為「我們歷史上採用速度最快的模型」，提升了搜尋表現和廣告投資回報率。</p>
-                            
-                            <h4>股價下跌原因</h4>
-                            <p>儘管超出分析師預期，投資者擔憂：</p>
-                            
-                            <p>• 2026 年資本支出達 <strong>1750-1850 億美元</strong><br>
-                            • 幾乎是 2025 年的兩倍<br>
-                            • 主要用於 AI 伺服器和數據中心<br>
-                            • 投資回報時間表不明確</p>
-                            
-                            <p class="quote">「投資者最擔心的不是支出的絕對水準，而是投資回報的不確定性和變現時間表。」</p>
-                            
-                            <h4>前景展望</h4>
-                            <p>以 30 倍本益比計算，考慮到高額資本支出，Alphabet 估值仍然偏高。如果雲端服務增長超過 30% 且 Gemini 成功變現，Alphabet 可能在 2026 年中重返高峰估值。</p>
-                            
-                            <p>建議投資者觀察 Q1 執行效果。</p>
+                            <h3>📝 內容摘要</h3>
+                            <p>蘋果公司備受期待的 AI Siri 似乎又面臨推遲。原本計劃於今年 3 月隨 iOS 26.4 發布的功能，現在可能要延後至 iOS 26.5 或更晚版本。內部測試顯示，新 Siri 在處理速度、準確性和複雜查詢的推理能力上仍不穩定。</p>
+                            <p>此外，蘋果堅持的隱私保護立場也增加了開發難度。高層重申 AI 資料將盡可能留在本地或加密伺服器，不洩漏用戶隱私。隨著提姆·庫克（Tim Cook）可能於今年卸任，外界關注他是否能在任期內完成這項重大更新。目前，蘋果正積極與 Google 合作，將 Gemini 模型技術整合進其基礎平台中。</p>
                         </div>
-                        <a href="https://www.techi.com/alphabet-stock-ai-rally-reality-check/" target="_blank" class="original-link">
-                            🔗 查看英文原文
+                        <a href="https://technews.tw/2026/02/23/can-cook-witness-ai-siri-launch-ahead-of-retirement" target="_blank" class="original-link">
+                            🔗 查看原文
                         </a>
                     </div>
                 </div>
             </article>
             
-            <!-- 新聞 4：Broadcom AI 晶片 -->
-            <article class="news-card" data-lang="en">
+            <!-- 新聞 4 -->
+            <article class="news-card" data-lang="zh">
                 <div class="news-header" onclick="toggleCard(this.parentElement)">
-                    <h2>🔮 分析師預測：Broadcom 或成 2026 年 AI 市場領導者</h2>
-                    <p class="summary">Motley Fool 預測 Broadcom 可能在 2026 年成為 AI 市場領導者。管理層表示下季度客製 AI 晶片收入將同比翻倍。</p>
+                    <h2>🌿 台灣大以 AI 強化能源韌性，入選 S&P Global 永續年鑑</h2>
+                    <p class="summary">台灣大哥大透過自主研發的 AI 綠電匹配演算法優化能源效率，2025 年基地台節電超過 1,800 萬度，展現 AI 在永續治理上的潛力。</p>
                     <div class="news-meta">
-                        <span class="news-source">The Motley Fool</span>
-                        <span class="lang-badge lang-en">🌐 英文原文（全文翻譯）</span>
+                        <span class="news-source">TechNews 科技新報</span>
+                        <span class="lang-badge lang-zh">🇹🇼 繁體中文</span>
                         <span class="expand-btn">展開全文 <span class="arrow">▼</span></span>
                     </div>
                 </div>
                 <div class="news-content">
                     <div class="news-content-inner">
                         <div class="full-article">
-                            <h3>📝 全文中文翻譯</h3>
-                            
-                            <p>《Motley Fool》發表分析預測，Broadcom 可能在 2026 年底前成為家喻戶曉的名字，成為 AI 市場的領導者。</p>
-                            
-                            <h4>客製 AI 晶片的崛起</h4>
-                            <p>Broadcom 的管理層表示，下季度客製 AI 晶片收入預計將<strong>同比翻倍</strong>。這代表著一個重要趨勢：大型科技公司越來越傾向於開發自己的客製晶片，而非完全依賴 Nvidia。</p>
-                            
-                            <h4>主要客戶</h4>
-                            <p>Broadcom 的客製 AI 晶片業務客戶包括：</p>
-                            
-                            <p>• <strong>Google</strong>：TPU（張量處理單元）<br>
-                            • <strong>Meta</strong>：MTIA 加速器<br>
-                            • <strong>Amazon</strong>：Trainium 和 Inferentia 晶片<br>
-                            • 其他大型雲端服務商</p>
-                            
-                            <h4>為何客製晶片受歡迎？</h4>
-                            <p>• <strong>成本效益</strong>：針對特定工作負載優化<br>
-                            • <strong>供應鏈控制</strong>：減少對單一供應商依賴<br>
-                            • <strong>競爭優勢</strong>：獨特的技術差異化<br>
-                            • <strong>能源效率</strong>：為特定任務優化功耗</p>
-                            
-                            <h4>對 Nvidia 的影響</h4>
-                            <p>客製晶片趨勢不一定對 Nvidia 不利：</p>
-                            
-                            <p class="quote">「市場夠大，容納得下通用 GPU 和客製 ASIC。Nvidia 仍主導通用訓練市場，而 Broadcom 在客製推理市場找到自己的定位。」</p>
-                            
-                            <h4>投資觀點</h4>
-                            <p>• Broadcom 股價仍有上漲空間<br>
-                            • 客製 AI 晶片市場快速增長<br>
-                            • 公司有穩定的股息歷史<br>
-                            • 2026 年可能成為 AI 領域新星</p>
+                            <h3>📝 內容摘要</h3>
+                            <p>台灣大哥大連續 9 度入選《S&P Global 永續年鑑》，並在 2026 年評比中榮獲全球前 5% 肯定。面對 AI 算力成長帶來的能耗挑戰，台灣大運用自主研發的 AI 網路節能技術（AI in RAN）即時優化用電，並結合 AI 綠電匹配演算法，提升綠電利用率。</p>
+                            <p>2025 年其基地台節電量已突破 1,800 萬度，再生能源使用率預計達 17%。台灣大還將 AI 技術應用於數位教育，推動「AI 苗圃陪跑計畫」與「虛擬數位學習中心」，縮短城鄉數位落差，展現企業運用 AI 達成社會與環境韌性的長期佈局。</p>
                         </div>
-                        <a href="https://www.fool.com/investing/2026/02/07/prediction-this-artificial-intelligence-ai-stock-c/" target="_blank" class="original-link">
-                            🔗 查看英文原文
+                        <a href="https://technews.tw/2026/02/23/ai-enhancing-energy-and-communication-resilience" target="_blank" class="original-link">
+                            🔗 查看原文
                         </a>
                     </div>
                 </div>
             </article>
             
-            <!-- 新聞 5：印度 AI 高峰會 -->
-            <article class="news-card" data-lang="en">
+            <!-- 新聞 5 -->
+            <article class="news-card" data-lang="zh">
                 <div class="news-header" onclick="toggleCard(this.parentElement)">
-                    <h2>🇮🇳 印度將舉辦 AI 影響力高峰會，展現 AI 雄心</h2>
-                    <p class="summary">印度 AI 影響力高峰會 2026 將於 2 月 19-20 日在新德里舉行，是印度 AI 發展的里程碑事件。政府將公布 AI 戰略，目標是在全球 AI 排名中進一步提升。</p>
+                    <h2>🛡️ 反擊 AI 內容農場：GitHub 出現 uBlock Origin 專用 AI 黑名單</h2>
+                    <p class="summary">為了解決 AI 生成內容導致的資訊品質下降，開發者在 GitHub 發起專案，手動收集並過濾無用的 AI 生成網站，協助用戶找回人類創作的真實資訊。</p>
                     <div class="news-meta">
-                        <span class="news-source">Robotics India</span>
-                        <span class="lang-badge lang-en">🌐 英文原文（全文翻譯）</span>
+                        <span class="news-source">trends.blogaihub.com</span>
+                        <span class="lang-badge lang-zh">🇰🇷 韓文編譯</span>
                         <span class="expand-btn">展開全文 <span class="arrow">▼</span></span>
                     </div>
                 </div>
                 <div class="news-content">
                     <div class="news-content-inner">
                         <div class="full-article">
-                            <h3>📝 全文中文翻譯</h3>
-                            
-                            <p><strong>印度 AI 影響力高峰會 2026</strong> 將於 2 月 19-20 日在新德里的 Bharat Mandapam 舉行，標誌著印度 AI 發展的里程碑事件。</p>
-                            
-                            <h4>高峰會亮點</h4>
-                            <p>• 政府將公布最新 AI 戰略<br>
-                            • 國內外專家參與討論<br>
-                            • 展示印度 AI 研究成果<br>
-                            • 推動 AI 產業合作</p>
-                            
-                            <h4>印度 AI 發展現況</h4>
-                            <p>印度科學、研究和技術部計劃在全國大學設立 <strong>15 個 AI 實驗室</strong>，開發和測試基礎 AI 模型。這些參考實驗室將根據科研工作、發表論文和學生人數，設立在頂尖大學。</p>
-                            
-                            <h4>全球排名提升</h4>
-                            <p>印度在 AI 科學產出的全球排名已從第 33 位提升至<strong>第 30 位</strong>，躋身全球前 50 名。政府目標是在兩年內通過基礎設施發展進一步提升排名，包括 AI 平台和助手的建設。</p>
-                            
-                            <h4>戰略重點</h4>
-                            <p>• <strong>人才培養</strong>：培訓 AI 專業人才<br>
-                            • <strong>研究基礎設施</strong>：建設 AI 實驗室網絡<br>
-                            • <strong>產業應用</strong>：推動 AI 在各行業的應用<br>
-                            • <strong>國際合作</strong>：與全球 AI 領導者建立夥伴關係</p>
-                            
-                            <h4>挑戰與機遇</h4>
-                            <p>印度擁有大量技術人才和龐大的國內市場，但也面臨基礎設施和資金的挑戰。這次高峰會旨在吸引更多投資，加速 AI 發展。</p>
+                            <h3>📝 內容摘要</h3>
+                            <p>隨著大語言模型普及，網路充斥著大量低質量的 AI 生成內容網站（Content Farms）。為了改善瀏覽體驗，開發者 alvi-se 在 GitHub 發布了針對 uBlock Origin 的「AI 黑名單」專案。該名單專門鎖定那些無用、充滿廣告且由 AI 大量生成的資訊農場。</p>
+                            <p>這個計畫旨在幫助用戶在搜尋時更容易接觸到由真實人類撰寫的高質量資訊，防止網路空間被虛假或未經驗證的 AI 資訊淹沒。此舉反映了在 AI 時代，使用者開始主動利用技術工具來維護資訊的純淨度與可信度。</p>
                         </div>
-                        <a href="https://roboticsindia.live/india-ai-impact-summit-2026/" target="_blank" class="original-link">
-                            🔗 查看英文原文
+                        <a href="https://trends.blogaihub.com/2026/02/2-23-ai-ai.html" target="_blank" class="original-link">
+                            🔗 查看原文
                         </a>
                     </div>
                 </div>
@@ -479,7 +355,7 @@
                 <span>Powered by</span>
                 <span>🤖 OpenClaw</span>
             </div>
-            <p style="margin-top: 15px; font-size: 0.8rem;">英文新聞皆由 AI 全文翻譯成繁體中文</p>
+            <p style="margin-top: 15px; font-size: 0.8rem;">新聞內容由 AI 助手自動蒐集與摘要</p>
         </footer>
     </div>
     
@@ -488,7 +364,7 @@
             card.classList.toggle('expanded');
             const btn = card.querySelector('.expand-btn');
             if (card.classList.contains('expanded')) {
-                btn.innerHTML = '收起全文 <span class="arrow">▼</span>';
+                btn.innerHTML = '收起全文 <span class="arrow">▲</span>';
             } else {
                 btn.innerHTML = '展開全文 <span class="arrow">▼</span>';
             }
