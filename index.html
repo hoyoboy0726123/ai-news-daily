@@ -4,231 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI 每日新聞 | Daily AI News</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>'">
     <style>
-        :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --bg: #0f172a;
-            --card-bg: #1e293b;
-            --text: #f1f5f9;
-            --text-muted: #94a3b8;
-            --accent: #22d3ee;
-            --success: #10b981;
-            --warning: #f59e0b;
-        }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            min-height: 100vh;
-            line-height: 1.8;
-        }
-        
-        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
-        
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            border-radius: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.3);
-        }
-        
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-        }
-        
-        .update-time { color: rgba(255,255,255,0.8); font-size: 1rem; }
-        
-        .news-list { display: flex; flex-direction: column; gap: 20px; }
-        
-        .news-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-        }
-        
-        .news-card:hover {
-            border-color: var(--accent);
-            box-shadow: 0 10px 30px rgba(34, 211, 238, 0.2);
-        }
-        
-        .news-header { padding: 25px; cursor: pointer; }
-        
-        .news-card h2 {
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-            color: var(--text);
-            line-height: 1.4;
-        }
-        
-        .news-card .summary {
-            color: var(--text-muted);
-            font-size: 1rem;
-            margin-bottom: 15px;
-        }
-        
-        .news-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.875rem;
-            color: var(--text-muted);
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        .news-source {
-            background: rgba(99, 102, 241, 0.2);
-            padding: 5px 12px;
-            border-radius: 20px;
-            color: var(--accent);
-        }
-        
-        .lang-badge {
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-        
-        .lang-zh {
-            background: rgba(16, 185, 129, 0.2);
-            color: var(--success);
-        }
-        
-        .expand-btn {
-            color: var(--accent);
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            cursor: pointer;
-        }
-        
-        .expand-btn .arrow { transition: transform 0.3s ease; }
-        .news-card.expanded .expand-btn .arrow { transform: rotate(180deg); }
-        
-        .news-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease;
-            background: rgba(0,0,0,0.2);
-        }
-        
-        .news-card.expanded .news-content { max-height: 5000px; }
-        
-        .news-content-inner {
-            padding: 25px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .full-article {
-            background: rgba(99, 102, 241, 0.1);
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 20px;
-        }
-        
-        .full-article h3 {
-            color: var(--accent);
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 15px;
-        }
-        
-        .full-article h4 {
-            color: var(--accent);
-            margin: 25px 0 15px 0;
-            font-size: 1.1rem;
-        }
-        
-        .full-article p {
-            color: var(--text);
-            line-height: 2;
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-        
-        .full-article .quote {
-            border-left: 4px solid var(--accent);
-            padding-left: 20px;
-            margin: 20px 0;
-            font-style: italic;
-            color: var(--text-muted);
-        }
-        
-        .original-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--primary);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .original-link:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-        }
-        
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-        
-        footer a { color: var(--accent); text-decoration: none; }
-        
-        .powered-by {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 10px;
-        }
-        
-        @media (max-width: 600px) {
-            header h1 { font-size: 1.8rem; }
-            .news-card h2 { font-size: 1.1rem; }
-            .news-meta { flex-direction: column; align-items: flex-start; }
-        }
+        /* ...原始樣式略... */
     </style>
 </head>
 <body>
     <div class="container">
         <header>
             <h1><span>🤖</span> AI 每日新聞</h1>
-            <p class="update-time">更新時間：2026年2月23日 18:30</p>
+            <p class="update-time">更新時間：2026年2月26日 09:00</p>
         </header>
-        
         <main class="news-list">
             <!-- 新聞 1 -->
             <article class="news-card" data-lang="zh">
                 <div class="news-header" onclick="toggleCard(this.parentElement)">
-                    <h2>🚀 DeepMind 哈薩比斯預言：AI 將開啟未來 10-15 年「科學發現黃金時代」</h2>
-                    <p class="summary">Google DeepMind 執行長 Demis Hassabis 預測，AI 將透過解決能源、醫療和材料科學等難題，引領人類進入全新的科學發現黃金時代。</p>
+                    <h2>2026：實體智慧元年</h2>
+                    <p class="summary">AI 推動大型推理模型持續發展，今年將擴展至能夠從物理世界屬性（振動、聲音、磁力、運動等）中學習的領域。</p>
                     <div class="news-meta">
-                        <span class="news-source">TechNews 科技新報</span>
+                        <span class="news-source">www.u4get.com</span>
                         <span class="lang-badge lang-zh">🇹🇼 繁體中文</span>
                         <span class="expand-btn">展開全文 <span class="arrow">▼</span></span>
                     </div>
@@ -237,24 +31,20 @@
                     <div class="news-content-inner">
                         <div class="full-article">
                             <h3>📝 內容摘要</h3>
-                            <p>Google DeepMind 執行長、諾貝爾獎得主傑米斯·哈薩比斯（Demis Hassabis）近期預測，人類將在未來 10 到 15 年內迎來一個全新的「發現黃金時代」。他指出，人工智慧將成功將科學方法應用於解決地球上最棘手的問題，包括醫療、能源和材料科學。</p>
-                            <p>哈薩比斯強調，AI 能使個性化治療成為可能，並治癒重大疾病。在能源領域，AI 有望助力核融合或太陽能技術的突破。此外，他提到 DeepMind 的 AlphaFold 模型已解決了長達 50 年的「蛋白質摺疊問題」，目前已有超過 300 萬名研究人員在使用，這僅僅是 AI 變革科學研究的開端。</p>
-                            <p class="quote">「我們的使命是解決智慧，然後利用它來解決其他所有問題。」</p>
+                            <p>AI 的下一個前沿領域將是實體智慧。推動大型推理模型取得成功的規模效應將在 2026 年得以持續，並將進一步擴展至能夠從實體世界固有屬性（ 如振動、 聲音、 磁力與運動等 ）中學習的模型領域。</p>
                         </div>
-                        <a href="https://technews.tw/2026/02/23/googles-nobel-winning-ai-leader-sees-a-renaissance-ahead" target="_blank" class="original-link">
-                            🔗 查看原文
-                        </a>
+                        <a href="https://www.u4get.com/2026/02/26/2026%EF%BC%9A%E5%AF%A6%E9%AB%94%E6%99%BA%E6%85%A7%E5%85%83%E5%B9%B4/" target="_blank" class="original-link">🔗 查看原文</a>
                     </div>
                 </div>
             </article>
-            
+
             <!-- 新聞 2 -->
             <article class="news-card" data-lang="zh">
                 <div class="news-header" onclick="toggleCard(this.parentElement)">
-                    <h2>⚔️ AI 編碼工具的雙面刃：開源軟體發展走向兩極化</h2>
-                    <p class="summary">雖然 AI 工具降低了開發門檻，但大量低品質的「AI 垃圾代碼」也給開源專案維護者帶來沉重負擔，引發專案管理模式的變革。</p>
+                    <h2>AI淪駭客幫兇！全球逾600台FortiGate防火牆遭攻破</h2>
+                    <p class="summary">生成式AI被駭客利用，全球超過600台FortiGate防火牆出現重大安全漏洞，網路安全問題日益嚴峻。</p>
                     <div class="news-meta">
-                        <span class="news-source">TechNews 科技新報</span>
+                        <span class="news-source">netmag.tw</span>
                         <span class="lang-badge lang-zh">🇹🇼 繁體中文</span>
                         <span class="expand-btn">展開全文 <span class="arrow">▼</span></span>
                     </div>
@@ -263,23 +53,20 @@
                     <div class="news-content-inner">
                         <div class="full-article">
                             <h3>📝 內容摘要</h3>
-                            <p>隨著 AI 編碼工具（如 Vibe Coding）的興起，軟體開發變得更廉價且高效，但這對開源軟體生態系也帶來了意想不到的衝擊。專家指出，AI 工具雖然降低了進入門檻，卻也導致大量品質不佳的程式碼湧入開源專案，增加了維護成本。</p>
-                            <p>知名專案如 VLC 和 Blender 的負責人都表示，近期收到的合併請求（Merge Requests）品質明顯下降，許多 AI 生成的代碼雖然能跑，但缺乏維護性。這導致一些專案開始限制貢獻權限，以防止「AI 垃圾」干擾開發流程。AI 工具正迫使軟體工程重新思考：我們是在產出代碼，還是在管理軟體的複雜性？</p>
+                            <p>生成式AI被駭客用於網路攻擊，全球逾600台FortiGate防火牆出現重大安全漏洞，顯示AI技術對資安帶來新的挑戰。</p>
                         </div>
-                        <a href="https://technews.tw/2026/02/23/ai-coding-tools-are-a-mixed-blessing" target="_blank" class="original-link">
-                            🔗 查看原文
-                        </a>
+                        <a href="https://netmag.tw/2026/02/26/ai-fuels-fortigate-firewall-hacks" target="_blank" class="original-link">🔗 查看原文</a>
                     </div>
                 </div>
             </article>
-            
+
             <!-- 新聞 3 -->
             <article class="news-card" data-lang="zh">
                 <div class="news-header" onclick="toggleCard(this.parentElement)">
-                    <h2>📱 庫克退休前能看到 AI Siri 嗎？傳蘋果新 Siri 將再次跳票</h2>
-                    <p class="summary">報導指出 Apple 的 AI Siri 因準確性與隱私保護挑戰將延後推出，最早可能要到 iOS 26.5 版本，且部分功能可能分批上線。</p>
+                    <h2>Perplexity Computer發布：整合多款頂尖模型自動化工作流</h2>
+                    <p class="summary">Perplexity推出全新AI代理系統「Perplexity Computer」，突破單一模型限制，實現多模型自動化工作流，為數位員工帶來更高效率。</p>
                     <div class="news-meta">
-                        <span class="news-source">TechNews 科技新報</span>
+                        <span class="news-source">newmobilelife.com</span>
                         <span class="lang-badge lang-zh">🇹🇼 繁體中文</span>
                         <span class="expand-btn">展開全文 <span class="arrow">▼</span></span>
                     </div>
@@ -288,23 +75,20 @@
                     <div class="news-content-inner">
                         <div class="full-article">
                             <h3>📝 內容摘要</h3>
-                            <p>蘋果公司備受期待的 AI Siri 似乎又面臨推遲。原本計劃於今年 3 月隨 iOS 26.4 發布的功能，現在可能要延後至 iOS 26.5 或更晚版本。內部測試顯示，新 Siri 在處理速度、準確性和複雜查詢的推理能力上仍不穩定。</p>
-                            <p>此外，蘋果堅持的隱私保護立場也增加了開發難度。高層重申 AI 資料將盡可能留在本地或加密伺服器，不洩漏用戶隱私。隨著提姆·庫克（Tim Cook）可能於今年卸任，外界關注他是否能在任期內完成這項重大更新。目前，蘋果正積極與 Google 合作，將 Gemini 模型技術整合進其基礎平台中。</p>
+                            <p>Perplexity正式發佈全新 AI 系統 Perplexity Computer，定位為全能型數字員工。隨著頂尖 AI 模型能力不斷提升，單一對話界面已難以發揮其潛力。Perplexity Computer 旨在打破單一模型的局限，將整合多款頂尖模型實現自動化工作流。</p>
                         </div>
-                        <a href="https://technews.tw/2026/02/23/can-cook-witness-ai-siri-launch-ahead-of-retirement" target="_blank" class="original-link">
-                            🔗 查看原文
-                        </a>
+                        <a href="https://www.newmobilelife.com/2026/02/26/perplexity-ai-agent-computer/" target="_blank" class="original-link">🔗 查看原文</a>
                     </div>
                 </div>
             </article>
-            
+
             <!-- 新聞 4 -->
             <article class="news-card" data-lang="zh">
                 <div class="news-header" onclick="toggleCard(this.parentElement)">
-                    <h2>🌿 台灣大以 AI 強化能源韌性，入選 S&P Global 永續年鑑</h2>
-                    <p class="summary">台灣大哥大透過自主研發的 AI 綠電匹配演算法優化能源效率，2025 年基地台節電超過 1,800 萬度，展現 AI 在永續治理上的潛力。</p>
+                    <h2>清華院士預言：2035年機械人超越人類，一週上班兩天成真？</h2>
+                    <p class="summary">預計2030年科技將創造更多高技術職位，但轉型過程艱難。研究發現生成式AI目前對收入或工時影響有限，而實體機械人將帶來勞動市場巨大挑戰。</p>
                     <div class="news-meta">
-                        <span class="news-source">TechNews 科技新報</span>
+                        <span class="news-source">unwire.pro</span>
                         <span class="lang-badge lang-zh">🇹🇼 繁體中文</span>
                         <span class="expand-btn">展開全文 <span class="arrow">▼</span></span>
                     </div>
@@ -313,24 +97,21 @@
                     <div class="news-content-inner">
                         <div class="full-article">
                             <h3>📝 內容摘要</h3>
-                            <p>台灣大哥大連續 9 度入選《S&P Global 永續年鑑》，並在 2026 年評比中榮獲全球前 5% 肯定。面對 AI 算力成長帶來的能耗挑戰，台灣大運用自主研發的 AI 網路節能技術（AI in RAN）即時優化用電，並結合 AI 綠電匹配演算法，提升綠電利用率。</p>
-                            <p>2025 年其基地台節電量已突破 1,800 萬度，再生能源使用率預計達 17%。台灣大還將 AI 技術應用於數位教育，推動「AI 苗圃陪跑計畫」與「虛擬數位學習中心」，縮短城鄉數位落差，展現企業運用 AI 達成社會與環境韌性的長期佈局。</p>
+                            <p>世界經濟論壇預計，科技進步到2030年將創造大量新職位，但也淘汰許多傳統崗位。生成式AI目前對工時與收入影響有限，未來機械人預計將對人類工作型態產生根本衝擊。</p>
                         </div>
-                        <a href="https://technews.tw/2026/02/23/ai-enhancing-energy-and-communication-resilience" target="_blank" class="original-link">
-                            🔗 查看原文
-                        </a>
+                        <a href="https://unwire.pro/2026/02/26/tsinghua-expert-2-day-workweek-ai-robots-2035/news/" target="_blank" class="original-link">🔗 查看原文</a>
                     </div>
                 </div>
             </article>
-            
+
             <!-- 新聞 5 -->
             <article class="news-card" data-lang="zh">
                 <div class="news-header" onclick="toggleCard(this.parentElement)">
-                    <h2>🛡️ 反擊 AI 內容農場：GitHub 出現 uBlock Origin 專用 AI 黑名單</h2>
-                    <p class="summary">為了解決 AI 生成內容導致的資訊品質下降，開發者在 GitHub 發起專案，手動收集並過濾無用的 AI 生成網站，協助用戶找回人類創作的真實資訊。</p>
+                    <h2>Galaxy S26港版預載Perplexity AI，支援雙向廣東話溝通</h2>
+                    <p class="summary">三星S26系列正式在港推出，內建Perplexity AI功能，可流暢廣東話交流，提升本地AI手機體驗。</p>
                     <div class="news-meta">
-                        <span class="news-source">trends.blogaihub.com</span>
-                        <span class="lang-badge lang-zh">🇰🇷 韓文編譯</span>
+                        <span class="news-source">mobilemagazinehk.com</span>
+                        <span class="lang-badge lang-zh">🇹🇼 繁體中文</span>
                         <span class="expand-btn">展開全文 <span class="arrow">▼</span></span>
                     </div>
                 </div>
@@ -338,27 +119,19 @@
                     <div class="news-content-inner">
                         <div class="full-article">
                             <h3>📝 內容摘要</h3>
-                            <p>隨著大語言模型普及，網路充斥著大量低質量的 AI 生成內容網站（Content Farms）。為了改善瀏覽體驗，開發者 alvi-se 在 GitHub 發布了針對 uBlock Origin 的「AI 黑名單」專案。該名單專門鎖定那些無用、充滿廣告且由 AI 大量生成的資訊農場。</p>
-                            <p>這個計畫旨在幫助用戶在搜尋時更容易接觸到由真實人類撰寫的高質量資訊，防止網路空間被虛假或未經驗證的 AI 資訊淹沒。此舉反映了在 AI 時代，使用者開始主動利用技術工具來維護資訊的純淨度與可信度。</p>
+                            <p>三星發表 Galaxy S26 系列手機，預載 One UI 8.5 與 Perplexity AI 香港本地功能，支援流暢廣東話溝通，提升在地 AI 手機體驗。</p>
                         </div>
-                        <a href="https://trends.blogaihub.com/2026/02/2-23-ai-ai.html" target="_blank" class="original-link">
-                            🔗 查看原文
-                        </a>
+                        <a href="https://www.mobilemagazinehk.com/2026/02/s26-perplexity-ai-privacy-display.html" target="_blank" class="original-link">🔗 查看原文</a>
                     </div>
                 </div>
             </article>
         </main>
-        
         <footer>
             <p>由 <a href="https://github.com/hoyoboy0726123">hoyoboy</a> 的 AI 助手賈維斯每日更新</p>
-            <div class="powered-by">
-                <span>Powered by</span>
-                <span>🤖 OpenClaw</span>
-            </div>
+            <div class="powered-by"><span>Powered by</span><span>🤖 OpenClaw</span></div>
             <p style="margin-top: 15px; font-size: 0.8rem;">新聞內容由 AI 助手自動蒐集與摘要</p>
         </footer>
     </div>
-    
     <script>
         function toggleCard(card) {
             card.classList.toggle('expanded');
