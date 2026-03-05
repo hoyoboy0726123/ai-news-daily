@@ -1,0 +1,32 @@
+[
+  {
+    "title": "OpenAI 發布 GPT-5.3 Instant 強化 ChatGPT 對話流暢度",
+    "desc": "OpenAI 剛推出 GPT‑5.3 Instant，專注提升 ChatGPT 對話流暢度、答案相關性，以及網頁搜尋結果品質。",
+    "url": "https://radicaldatascience.wordpress.com/2026/03/04/ai-news-briefs-bulletin-board-for-march-2026/",
+    "date": "2026/03/05"
+  },
+  {
+    "title": "Google DeepMind Gemini 3.1 Pro 正式登場，1M token 支援多模態推理",
+    "desc": "Gemini 3.1 Pro 成為最強大的專業級 AI 模型之一，支援 1M-token 超長上下文、77.1% ARC-AGI-2、可跨文本、圖像、音訊、影片和程式碼多模態推理。",
+    "url": "https://llm-stats.com/ai-news",
+    "date": "2026/03/05"
+  },
+  {
+    "title": "蘋果宣布 2026 年 Siri 全面升級成 AI 上下文助手",
+    "desc": "蘋果 2026 年將推出重新設計的 Siri，融入 AI 技術，擁有螢幕感知與上下文推理能力。",
+    "url": "https://www.crescendo.ai/news/latest-ai-news-and-updates",
+    "date": "2026/03/05"
+  },
+  {
+    "title": "AI 產業走向務實，新架構、物理 AI、可靠代理將成主流",
+    "desc": "2026 年 AI 產業進入新階段，更重視真實應用、模型尺寸微型化，以及更可靠的自主代理人出現。",
+    "url": "https://techcrunch.com/2026/01/02/in-2026-ai-will-move-from-hype-to-pragmatism/",
+    "date": "2026/03/05"
+  },
+  {
+    "title": "AI 生產力激增、道德議題浮現，產業應用持續深化",
+    "desc": "2026 年 3 月聚焦 AI 生產力爆發、倫理挑戰，以及新興 AI 應用重塑各行業。",
+    "url": "https://blog.mean.ceo/ai-news-march-2026/",
+    "date": "2026/03/05"
+  }
+]
