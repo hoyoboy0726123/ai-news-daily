@@ -4,48 +4,389 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI 每日新聞 | Daily AI News</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>'">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
     <style>
-        /* ...原始樣式略... */
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --accent: #22d3ee;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans TC', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.8;
+        }
+        
+        .container { 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            padding: 20px; 
+        }
+        
+        header {
+            text-align: center;
+            padding: 60px 30px;
+            background: var(--gradient);
+            border-radius: 24px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        
+        header h1 span { font-size: 3.5rem; }
+        
+        .update-time { 
+            color: rgba(255,255,255,0.9); 
+            font-size: 1.1rem; 
+            position: relative;
+            z-index: 1;
+            font-weight: 500;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .news-list { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 25px; 
+        }
+        
+        .news-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            position: relative;
+        }
+        
+        .news-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 60px rgba(34, 211, 238, 0.3);
+        }
+        
+        .news-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .news-header { 
+            padding: 30px;
+            cursor: pointer;
+        }
+        
+        .news-number {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .news-card h2 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--text);
+            line-height: 1.5;
+            font-weight: 600;
+        }
+        
+        .news-card .summary {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .news-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .news-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 20px;
+            background: rgba(34, 211, 238, 0.1);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .news-link:hover {
+            background: rgba(34, 211, 238, 0.2);
+            transform: translateX(5px);
+        }
+        
+        .news-link::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+        
+        .news-link:hover::after {
+            transform: translateX(5px);
+        }
+        
+        .lang-badge {
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .lang-zh {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+        }
+        
+        footer {
+            margin-top: 60px;
+            padding: 40px 20px;
+            text-align: center;
+            background: var(--card-bg);
+            border-radius: 20px;
+            border-top: 3px solid var(--primary);
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+            color: var(--text-muted);
+        }
+        
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        footer a:hover {
+            color: var(--primary);
+        }
+        
+        .powered-by {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+        
+        .powered-by span:last-child {
+            background: var(--gradient);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            header h1 span { font-size: 2.5rem; }
+            .news-card h2 { font-size: 1.2rem; }
+            .container { padding: 15px; }
+            .stats { flex-direction: column; gap: 15px; }
+        }
+        
+        /* Loading animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .news-card {
+            animation: fadeIn 0.6s ease-out backwards;
+        }
+        
+        .news-card:nth-child(1) { animation-delay: 0.1s; }
+        .news-card:nth-child(2) { animation-delay: 0.2s; }
+        .news-card:nth-child(3) { animation-delay: 0.3s; }
+        .news-card:nth-child(4) { animation-delay: 0.4s; }
+        .news-card:nth-child(5) { animation-delay: 0.5s; }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
             <h1><span>🤖</span> AI 每日新聞</h1>
-            <p class="update-time">更新時間：2026年3月8日 11:12</p>
+            <p class="update-time">📅 更新時間：2026年3月8日 11:12</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">今日新聞</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">繁中翻譯</div>
+                </div>
+            </div>
         </header>
+
         <main class="news-list">
             <article class="news-card" data-lang="zh">
-                <h2>MWC 2026：華為發表 AI 全光網路架構 打造 AI 代理網路時代</h2>
-                <p>華為於 MWC 2026 發表以 AI 為中心的全光網與下一代 WAN 架構，聚焦頻寬、時延、可靠性與安全升級，協助電信商打造支撐 AI 代理網路的基礎建設。</p>
-                <a href="https://www.cool3c.com/article/246762" target="_blank">查看全文</a>
+                <div class="news-header">
+                    <div class="news-number">1</div>
+                    <h2>MWC 2026：華為發表 AI 全光網路架構 打造 AI 代理網路時代</h2>
+                    <p class="summary">華為於 MWC 2026 發表以 AI 為中心的全光網與下一代 WAN 架構，聚焦頻寬、時延、可靠性與安全升級，協助電信商打造支撐 AI 代理網路的基礎建設。</p>
+                    <div class="news-footer">
+                        <a href="https://www.cool3c.com/article/246762" target="_blank" class="news-link">閱讀全文</a>
+                        <span class="lang-badge lang-zh">🇹🇼 繁中</span>
+                    </div>
+                </div>
             </article>
+
             <article class="news-card" data-lang="zh">
-                <h2>AI 熱潮推升記憶體價格 Valve Steam Machine 等硬體產品可能 2026 出不了貨</h2>
-                <p>受 AI 產業需求影響，記憶體價格飆升，衝擊 Valve 硬體計畫。原定 2026 上半年推出的 Steam Machine 等新品因成本問題可能延遲上市。</p>
-                <a href="https://www.cool3c.com/article/246846" target="_blank">查看全文</a>
+                <div class="news-header">
+                    <div class="news-number">2</div>
+                    <h2>AI 熱潮推升記憶體價格 Valve Steam Machine 等硬體產品可能 2026 出不了貨</h2>
+                    <p class="summary">受 AI 產業需求影響，記憶體價格飆升，衝擊 Valve 硬體計畫。原定 2026 上半年推出的 Steam Machine 等新品因成本問題可能延遲上市。</p>
+                    <div class="news-footer">
+                        <a href="https://www.cool3c.com/article/246846" target="_blank" class="news-link">閱讀全文</a>
+                        <span class="lang-badge lang-zh">🇹🇼 繁中</span>
+                    </div>
+                </div>
             </article>
+
             <article class="news-card" data-lang="zh">
-                <h2>博通發表 VMware Telco Cloud Platform 9 協助電信商降低營運成本</h2>
-                <p>博通發表 VMware Telco Cloud Platform 9，統一 AI 原生與主權雲架構，可整合 5G 與 AI 工作負載，提升資源效率並降低總體擁有成本。</p>
-                <a href="https://www.cool3c.com/article/246819" target="_blank">查看全文</a>
+                <div class="news-header">
+                    <div class="news-number">3</div>
+                    <h2>博通發表 VMware Telco Cloud Platform 9 協助電信商降低營運成本</h2>
+                    <p class="summary">博通發表 VMware Telco Cloud Platform 9，統一 AI 原生與主權雲架構，可整合 5G 與 AI 工作負載，提升資源效率並降低總體擁有成本。</p>
+                    <div class="news-footer">
+                        <a href="https://www.cool3c.com/article/246819" target="_blank" class="news-link">閱讀全文</a>
+                        <span class="lang-badge lang-zh">🇹🇼 繁中</span>
+                    </div>
+                </div>
             </article>
+
             <article class="news-card" data-lang="zh">
-                <h2>OpenAI 發布 GPT-5.4 系列！百萬 Token 超長上下文與原生電腦操作能力</h2>
-                <p>2026 年 3 月 5 日，OpenAI 震撼推出基礎模型 GPT-5.4，不僅大幅提升邏輯準確性，更首度支援原生電腦操作能力，解鎖極限深度推理。</p>
-                <a href="https://app.abiting.cc/archives/2841" target="_blank">查看全文</a>
+                <div class="news-header">
+                    <div class="news-number">4</div>
+                    <h2>OpenAI 發布 GPT-5.4 系列！百萬 Token 超長上下文與原生電腦操作能力</h2>
+                    <p class="summary">2026 年 3 月 5 日，OpenAI 震撼推出基礎模型 GPT-5.4，不僅大幅提升邏輯準確性，更首度支援原生電腦操作能力，解鎖極限深度推理。</p>
+                    <div class="news-footer">
+                        <a href="https://app.abiting.cc/archives/2841" target="_blank" class="news-link">閱讀全文</a>
+                        <span class="lang-badge lang-zh">🇹🇼 繁中</span>
+                    </div>
+                </div>
             </article>
+
             <article class="news-card" data-lang="zh">
-                <h2>Google Search 正式引進 Canvas 功能！AI Mode 轉型為全能協作空間</h2>
-                <p>Google 宣布 Gemini Canvas 協作工具正式上線，標誌 Google Search AI Mode 轉型為全能協作與分享空間，提升用戶效率。</p>
-                <a href="https://app.abiting.cc/archives/2864" target="_blank">查看全文</a>
+                <div class="news-header">
+                    <div class="news-number">5</div>
+                    <h2>Google Search 正式引進 Canvas 功能！AI Mode 轉型為全能協作空間</h2>
+                    <p class="summary">Google 宣布 Gemini Canvas 協作工具正式上線，標誌 Google Search AI Mode 轉型為全能協作與分享空間，提升用戶效率。</p>
+                    <div class="news-footer">
+                        <a href="https://app.abiting.cc/archives/2864" target="_blank" class="news-link">閱讀全文</a>
+                        <span class="lang-badge lang-zh">🇹🇼 繁中</span>
+                    </div>
+                </div>
             </article>
         </main>
+
         <footer>
-            <p>由 <a href="https://github.com/hoyoboy0726123">hoyoboy</a> 的 AI 助手賈維斯每日更新</p>
-            <div class="powered-by"><span>Powered by</span><span>🤖 OpenClaw</span></div>
-            <p style="margin-top: 15px; font-size: 0.8rem;">新聞內容由賈維斯自動蒐集與摘要</p>
+            <p>由 <a href="https://github.com/hoyoboy0726123" target="_blank">hoyoboy</a> 的 AI 助手賈維斯每日自動更新</p>
+            <div class="powered-by">
+                <span>Powered by</span>
+                <span>🤖 OpenClaw</span>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.85rem; opacity: 0.7;">
+                新聞內容由賈維斯自動蒐集、翻譯與摘要 | 每日 09:00 自動更新
+            </p>
         </footer>
     </div>
 </body>
